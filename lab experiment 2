@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<limits.h>
+#define maxsize 100
+int stack[maxsize],top=-1;//top will keep index of top variable
+int isEmpty(){//function to check if stack is empty or not
+if(top==-1)
+return 1;
+else
+return 0;
+//return top ==-1 ? 1 : 0;
+}
+int isFull(){//function to check if stack is full or not
+if(top ==maxsize-1)
+return 1;
+else
+return 0;
+//return (top ==maxsize -1) ? 1 :0;
+}
+void push(){//function to insert element at top of stack
+    if(isFull())
+        printf("Stack Over Flow");
+    else{
+        int value;
+        printf("Enter element : ");
+        scanf("%d",&value);
+        top++;
+        stack[top]=value;
+        printf("Element Inserted!!!!");
+    }
+}
+int  pop(){//function to delet element at top of stack
+    if(isEmpty()){
+    printf("Stack Underflow!!!!!");
+    return INT_MIN;
+    }
+    else{
+       int val =stack[top];
+       top--;
+       return val;
+    }
+   }  
+   int main(){
+    int val;
+while(1){
+    printf("1. Push\n2. Pop\n3. Exit\n");
+    int choice;
+    printf("Enter choice: ");
+    scanf("%d",& choice);
+    switch(choice){
+        case 1:
+        push();
+        break;
+        case 2:
+        val =pop();
+        if(val != INT_MAX){
+            printf("POP from the stack !!\n"); }
+        break;
+        case 3:
+        exit(0);
+        break;
+        default:
+        printf("Invalid choice!!!!");
+    }
+    printf("\n");
+    system("pause");
+   
+  }
+
+    return 0;
+}
