@@ -1,0 +1,115 @@
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#define maxsize 100
+
+void insert( int *list,int *size){//function to insert element
+    int position ,value;
+     printf("Enter position  to insert element:");
+    scanf("%d",&position);
+    printf("Enter element to insert:");
+    scanf("%d",&value);
+    position--;
+    if(position<0 || position>*size)
+        printf("Invalid position\n");
+    else if(position==*size){
+        list[position]==value;
+        (*size)++;
+        printf("Element inerted sucessfully !!!!");
+    }
+    else{
+        for(int i=*size;i>=position;i--){
+            list[i]=list[i-1];
+        }
+        list[position]=value;
+        (*size)++;
+  printf("Element inerted sucessfully !!!!\n");
+    }
+    printf("After Insertion:");
+    for(int i=0;i<*size;i++){
+        printf("%d ",list[i]);
+    }
+   
+}
+void delete(int *list,int *size){//function to delete element
+    int pos;
+    printf("Enter position  to delete element:");
+     scanf("%d",&pos);
+     pos--;
+       if(pos<0 || pos>*size-1)
+        printf("Invalid position\n");
+        else if (pos==*size-1){
+            (*size)--;
+            printf("Element deleted !!!!!!!\n");
+        }
+        else{
+            for(int i=0;i<*size-1;i++){
+                if(i>=pos){
+                    //left shift
+                    list[i]=list[i+1];
+                }
+            }
+            (*size)--;
+            printf("Element deleted !!!!!!!!\n");
+        }
+            printf("After deletion: ");
+    for(int i=0;i<*size;i++){
+        printf("%d ",list[i]);
+    }
+    }
+
+void search(int *list, int size){//function to seacrch an element
+  int target,flag=0,i;
+    printf("Enter the target element: ");  
+    scanf("%d", &target);  
+
+    for(i=0;i<size;i++){
+        if(target==list[i]){
+            flag=1;
+            break;
+        }
+    }
+if(flag==1){
+    printf("Postion found at position : %d\n",i);  
+}
+else{
+    printf("Element not found !!!!!\n");
+}
+}
+
+int main(){
+    int list[maxsize],size;//(Here maxsize will represent max number of element , size will show size of array )
+    printf("Enter List size: ");
+    scanf("%d",&size);
+    printf("Enter element in List:");
+    for(int i=0;i<size;i++){
+        scanf("%d",&list[i]);
+    }
+while(1){
+    printf("1. Insertion\n2. Deletion\n3. Searching\n4. Exit\n");
+    int choice;
+    printf("Enter choice: ");
+    scanf("%d",& choice);
+    switch(choice){
+        case 1:
+        insert(list,&size);
+        break;
+        case 2:
+        delete(list,&size);
+        break;
+        case 3:
+        search(list,size);
+        break;
+        case 4:
+        exit(0);
+        break;
+        default:
+        printf("Invalid choice!!!!");
+    }
+    system("pause");
+   
+  }
+
+    return 0;
+}
